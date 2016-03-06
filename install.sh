@@ -16,4 +16,8 @@ fi
 cp -a git/gitrc/. ~/.gitrc
 echo "done."
 
+echo "copy ack configure..."
+cp ackrc ~/.ackrc
+echo "done."
+
 echo "Installed successfully! Enjoy :-)"
