@@ -1,0 +1,48 @@
+" phwater's vimrc - <midsummereddy@gmail.com>
+" Fork me on github : https://github.com/phwater/vimrc
+
+"> Tips :
+">   1. Use 'gf' to open vim quickly.
+">        ~/.vim/vimrcs/basic.vim      <= basic settings
+">        ~/.vim/vimrcs/plugin.vim     <= plugin config
+">   2. Use ':tab help xxx' to get the help pages.
+">   3. Use ':h index' to see default key-mappings.
+
+"-------------------------------------------------------------------------------
+" Most important setting!
+"-------------------------------------------------------------------------------
+"> Get out of VI's compatible mode..
+if (0 != &compatible)
+    set nocompatible
+endif
+
+"> Set mapleader
+let mapleader=","
+
+"> Source util.vim
+source ~/.vim/vimrcs/utils.vim
+
+"-------------------------------------------------------------------------------
+" Quickly edit vimrc
+"-------------------------------------------------------------------------------
+"> fast edit vimrc
+if Phwater_getSystemType() == 'linux'
+    "Fast editing of .vimrc
+    nnoremap <silent> <Leader>ee :call Phwater_switchToBuf("~/.vimrc")<CR>
+    nnoremap <silent> <Leader>eb :call Phwater_switchToBuf("~/.vim/vimrcs/basic.vim")<CR>
+    nnoremap <silent> <Leader>ep :call Phwater_switchToBuf("~/.vim/vimrcs/plugin.vim")<CR>
+    "Fast reloading of the .vimrc
+    nnoremap <silent> <Leader>ss :source ~/.vimrc<CR><Bar>:AirlineRefresh<CR>
+endif
+
+
+"-------------------------------------------------------------------------------
+" Source main configurations
+"-------------------------------------------------------------------------------
+if Phwater_getSystemType() == 'windows'
+    source $VIMRUNTIME/mswin.vim
+    behave mswin
+endif
+
+source ~/.vim/vimrcs/basic.vim
+source ~/.vim/vimrcs/plugin.vim
