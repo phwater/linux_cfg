@@ -1,0 +1,75 @@
+#! /bin/bash
+
+# if user is not root, pass all commands via sudo #
+if [ $UID -ne 0 ]; then
+    alias apt-get='sudo apt-get'
+
+    alias root='sudo -i'
+    alias su='sudo -i'
+
+    alias reboot='sudo /sbin/reboot'
+    alias poweroff='sudo /sbin/poweroff'
+    alias halt='sudo /sbin/halt'
+    alias shutdown='sudo /sbin/shutdown'
+fi
+
+# Add for android work
+alias alogf='adb logcat -v threadtime | tee device.log'
+alias alogk='adb shell cat /proc/kmsg | tee kernel.log'
+alias smsm='adb shell stop media && adb shell start media'
+alias arbtdl='adb reboot download'
+
+# ls family #
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias l.='ls -d .*'
+
+# grep progrom info. e.g. psg bash #
+alias psg='ps aux | grep -v grep | grep -i -e VSZ -e'
+
+# make any necessary parent directories #
+alias mkdir='mkdir -p'
+alias cp='cp -r'
+
+# continue the download in case of problem #
+alias wget='wget -c'
+
+# search history and grep #
+alias histg='history | grep'
+
+# easy to understand #
+alias df='df -h'
+alias du='du -h'
+
+alias path='echo -e ${PATH//:/\\n}'
+
+# Add safety nets #
+# do not delete / or prompt if deleting more than 3 files at a time #
+#alias rm='rm -I --preserve-root'
+
+# confirmation #
+#alias mv='mv -i'
+#alias cp='cp -i'
+#alias ln='ln -i'
+
+# Parenting changing perms on / #
+#alias chown='chown --preserve-root'
+#alias chmod='chmod --preserve-root'
+#alias chgrp='chgrp --preserve-root'
+
+function up() {
+	LIMIT="$1"
+	if [ -z "$LIMIT" ]; then
+		LIMIT=1
+	fi
+	local P="$PWD"
+	for ((i=1; i <= LIMIT; i++))
+	do
+		P="$P/.."
+	done
+	cd "$P"
+	export MPWD="$P"
+	#echo "Old Path: $OLDPWD"
+}
+

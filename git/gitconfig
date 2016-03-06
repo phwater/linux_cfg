@@ -1,0 +1,30 @@
+# ~/.gitconfig
+[user]
+	name = phwater
+	email = midsummereddy@gmail.com
+[color]
+	ui = auto
+[core]
+	excludesfile = ~/.gitrc/git-ignore-global
+[commit]
+	template = ~/.gitrc/git-commit-template
+[alias]
+	ck = checkout
+	cm = commit
+	st = status
+	br = branch
+	rb = rebase
+	sh = stash
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	last = log -1 HEAD
+	visual = !gitk --max-count=100 --all
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[http]
+#   proxy = http://127.0.0.1:8087
+[https]
+#   proxy = http://127.0.0.1:8087
