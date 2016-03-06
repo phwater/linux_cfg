@@ -39,10 +39,12 @@ alias wget='wget -c'
 alias histg='history | grep'
 
 # easy to understand #
-alias df='df -h'
-alias du='du -h'
+alias df='df -kTh'
+alias du='du -kh'
 
+# Pretty-print of some PATH variables:
 alias path='echo -e ${PATH//:/\\n}'
+alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 
 # Add safety nets #
 # do not delete / or prompt if deleting more than 3 files at a time #
@@ -58,18 +60,58 @@ alias path='echo -e ${PATH//:/\\n}'
 #alias chmod='chmod --preserve-root'
 #alias chgrp='chgrp --preserve-root'
 
-function up() {
-	LIMIT="$1"
-	if [ -z "$LIMIT" ]; then
-		LIMIT=1
-	fi
-	local P="$PWD"
-	for ((i=1; i <= LIMIT; i++))
-	do
-		P="$P/.."
-	done
-	cd "$P"
-	export MPWD="$P"
-	#echo "Old Path: $OLDPWD"
+#-------------------------------------------------------------
+# Misc utilities:
+#-------------------------------------------------------------
+function repeat() {     # Repeat n times command.
+    local i max
+    max=$1; shift;
+    for ((i=1; i <= max ; i++)); do  # --> C-like syntax
+        eval "$@";
+    done
 }
 
+function ask() {        # See 'killps' for example of use.
+    echo -n "$@" '[y/n] ' ; read ans
+    case "$ans" in
+        y*|Y*) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+#-------------------------------------------------------------
+# Misc utilities:
+#-------------------------------------------------------------
+function up() {
+    local max="$1";
+    if [ -z "$max" ]; then
+        max=1
+    fi
+    local path=$(pwd 2>/dev/null);
+    for ((i=1; i <= max ; i++)); do
+        path="${path}/.."
+    done
+    path=$(echo ${path} | sed 's,//,/,g');
+    cd "${path}";
+    path=$(pwd 2>/dev/null);
+    echo "cd from $OLDPWD to $path"
+}
+
+# Adds some text in the terminal frame (if applicable).
+
+function xtitle() {
+    case "$TERM" in
+    *term* | rxvt)
+        echo -en  "\e]0;$*\a" ;;
+    *)  ;;
+    esac
+}
+
+# Aliases that use xtitle
+alias top='xtitle Processes on $HOST && top'
+#alias make='xtitle Making $(basename $PWD) ; make'
+
+function myip() { # Get IP adress on ethernet.
+    MY_IP=$(/sbin/ifconfig eth0 | awk '/inet/ { print $2 } ' | sed -e s/addr://)
+    echo ${MY_IP:-"Not connected"}
+}
