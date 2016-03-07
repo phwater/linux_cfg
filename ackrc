@@ -42,3 +42,4 @@
 --color-match=bold bright_red
 
 --ignore-dir=.projrc/
+#--ignore-dir=test/

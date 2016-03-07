@@ -5,12 +5,12 @@
 [color]
 	ui = auto
 [core]
-	excludesfile = ~/.gitrc/git-ignore-global
+	excludesfile = ~/.gitrc/git_ignore_global
 [commit]
-	template = ~/.gitrc/git-commit-template
+	template = ~/.gitrc/git_commit_template
 [alias]
 	ck = checkout
-	cm = commit
+	cm = commit --author='phwater <midsummereddy@gmail.com>'
 	st = status
 	br = branch
 	rb = rebase

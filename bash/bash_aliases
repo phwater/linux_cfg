@@ -1,8 +1,10 @@
-#! /bin/bash
+#!/bin/bash
 
 # if user is not root, pass all commands via sudo #
 if [ $UID -ne 0 ]; then
     alias apt-get='sudo apt-get'
+    alias add-apt-repository='sudo add-apt-repository'
+    alias update-alternatives='sudo update-alternatives'
 
     alias root='sudo -i'
     alias su='sudo -i'
@@ -97,8 +99,24 @@ function up() {
     echo "cd from $OLDPWD to $path"
 }
 
-# Adds some text in the terminal frame (if applicable).
+function mkcd () {
+    case "$1" in
+        */..|*/../)
+            cd -- "$1";; # that doesn't make any sense unless the directory already exists
+        /*/../*)
+            (cd "${1%/../*}/.." && mkdir -p "./${1##*/../}") && cd -- "$1";;
+        /*)
+            mkdir -p "$1" && cd "$1";;
+        */../*)
+            (cd "./${1%/../*}/.." && mkdir -p "./${1##*/../}") && cd "./$1";;
+        ../*)
+            (cd .. && mkdir -p "${1#.}") && cd "$1";;
+        *)
+            mkdir -p "./$1" && cd "./$1";;
+    esac
+}
 
+# Adds some text in the terminal frame (if applicable).
 function xtitle() {
     case "$TERM" in
     *term* | rxvt)
@@ -109,9 +127,11 @@ function xtitle() {
 
 # Aliases that use xtitle
 alias top='xtitle Processes on $HOST && top'
-#alias make='xtitle Making $(basename $PWD) ; make'
+alias make='xtitle Making $(basename $PWD) ; make'
 
-function myip() { # Get IP adress on ethernet.
+# Get IP adress on ethernet.
+function myip() {
     MY_IP=$(/sbin/ifconfig eth0 | awk '/inet/ { print $2 } ' | sed -e s/addr://)
     echo ${MY_IP:-"Not connected"}
 }
+
