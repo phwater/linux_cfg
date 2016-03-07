@@ -41,3 +41,12 @@ function! Phwater_switchToBuf(filename)
         exec "tabnew " . a:filename
     endif
 endfunction
+
+function! Phwater_removeTrailWS()
+    let _s = @/
+    exec "normal mz"
+    %s/\s\+$//ge
+    let @/ = _s
+    nohl
+    exec "normal `z"
+endfunction

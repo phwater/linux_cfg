@@ -30,16 +30,28 @@ set incsearch
 set ignorecase
 set smartcase
 
+"> for regular expressions turn magic on
+set magic
+
 "> set to auto read when a file is changed from the outside
 set autoread
 
 "> backup settings
 set nobackup
+set noswapfile
 "set backupext=.bak
 "set patchmode=.orig
 
 "> viminfo
 set viminfo='10,\"100,:20,%,n~/.vim/viminfo
+
+"> ignore compiled files
+set wildignore=*.o,*~,*.pyc
+if has("win16") || has("win32")
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+else
+    set wildignore+=.git\*,.hg\*,.svn\*
+endif
 
 "-------------------------------------------------------------------------------
 " => Display, message info
@@ -200,11 +212,23 @@ endif
 "-------------------------------------------------------------------------------
 " => Mapping
 "-------------------------------------------------------------------------------
+"> smart way to move between windows
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
+
+"> switch CWD to the directory of the open buffer
+nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
+
 "> select file content
 nnoremap <silent> <C-A> ggvG$
 
 "> remove trailing spaces
-nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+nnoremap <silent> <F5> :call Phwater_removeTrailWS()
+autocmd BufWrite *.py :call Phwater_removeTrailWS()
+autocmd BufWrite *.coffee :call Phwater_removeTrailWS()
+
 "> copy filename to clipboard
 nnoremap <silent> <F6> :let @+=expand("%:p")<CR>
 
@@ -215,9 +239,9 @@ vnoremap <silent> <F8> "+p
 inoremap <silent> <F8> <C-R><C-O>+
 
 "> allow saving of files as sudo when permission denied
-cnoremap w!! w !sudo tee > /dev/null %
+command W w !sudo tee % > /dev/null
 
-"> Search for selected text, forwards or backwards.
+"> search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
   \gvy/<C-R><C-R>=substitute(
