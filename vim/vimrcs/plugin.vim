@@ -172,7 +172,7 @@ let g:airline_theme='phwater'
 let g:ctrlp_map = '<C-P>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/out/*
+set wildignore+=*.~,*.so,*.swp,*.zip,*/out/*,*/tmp/*,*/test/*
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll)$',
@@ -261,7 +261,7 @@ nnoremap <silent> <Leader>bh :BufExplorerHorizontalSplit<CR>
 nnoremap <silent> <Leader>bv :BufExplorerVerticalSplit<CR>
 
 "-------------------------------------------------------------------------------
-" 10. IndentLine
+" 11. IndentLine
 "-------------------------------------------------------------------------------
 let g:indentLine_color_tty_light=5    " (default: 4)
 let g:indentLine_color_dark=6         " (default: 2)

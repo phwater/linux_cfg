@@ -1,7 +1,7 @@
 " phwater's vimrc - <midsummereddy@gmail.com>
 " Fork me on github : https://github.com/phwater/vimrc
 
-function! Phwater_getSystemType()
+function! _phwater_getSystemType()
     if has('win32')
         return 'windows'
     elseif has('unix')
@@ -16,7 +16,7 @@ function! Phwater_getSystemType()
     endif
 endfunction
 
-function! Phwater_switchToBuf(filename)
+function! _phwater_switchToBuf(filename)
     "let fullfn = substitute(a:filename, "^\\~/", $HOME . "/", "")
     " find in current tab
     let bufwinnr = bufwinnr(a:filename)
@@ -42,11 +42,15 @@ function! Phwater_switchToBuf(filename)
     endif
 endfunction
 
-function! Phwater_removeTrailWS()
+function! _phwater_removeTrailWS()
     let _s = @/
     exec "normal mz"
     %s/\s\+$//ge
     let @/ = _s
     nohl
     exec "normal `z"
+endfunction
+
+function! _phwater_findProjrc()
+    " Todo
 endfunction

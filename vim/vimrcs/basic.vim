@@ -43,7 +43,10 @@ set noswapfile
 "set patchmode=.orig
 
 "> viminfo
-set viminfo='10,\"100,:20,%,n~/.vim/viminfo
+set viminfo='10,<500,:20,%,n~/.vim/viminfo
+
+"> vim session
+set sessionoptions=blank,buffers,curdir,folds,help,options,tabpages,winsize
 
 "> ignore compiled files
 set wildignore=*.o,*~,*.pyc
@@ -157,7 +160,7 @@ set mousehide
 " => Multi-byte characters
 "-------------------------------------------------------------------------------
 set encoding=utf-8
-set fileencoding=utf-8
+"set fileencoding=utf-8
 
 "-------------------------------------------------------------------------------
 " => Terminal settings
@@ -204,7 +207,7 @@ if has("cscope")
     nnoremap <silent> <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR><BAR>:belowright copen<CR>
     nnoremap <silent> <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR><BAR>:belowright copen<CR>
     nnoremap <silent> <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR><BAR>:belowright copen<CR>
-    nnoremap <silent> <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<<CR>BAR>:belowright copen<CR>
+    nnoremap <silent> <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR><BAR>:belowright copen<CR>
     nnoremap <silent> <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR><BAR>:belowright copen<CR>
 
 endif
@@ -225,9 +228,9 @@ nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 nnoremap <silent> <C-A> ggvG$
 
 "> remove trailing spaces
-nnoremap <silent> <F5> :call Phwater_removeTrailWS()
-autocmd BufWrite *.py :call Phwater_removeTrailWS()
-autocmd BufWrite *.coffee :call Phwater_removeTrailWS()
+nnoremap <silent> <F5> :call _phwater_removeTrailWS()<CR>
+autocmd BufWrite *.py :call _phwater_removeTrailWS()
+autocmd BufWrite *.coffee :call _phwater_removeTrailWS()
 
 "> copy filename to clipboard
 nnoremap <silent> <F6> :let @+=expand("%:p")<CR>

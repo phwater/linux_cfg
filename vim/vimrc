@@ -26,20 +26,24 @@ source ~/.vim/vimrcs/utils.vim
 " Quickly edit vimrc
 "-------------------------------------------------------------------------------
 "> fast edit vimrc
-if Phwater_getSystemType() == 'linux'
+if _phwater_getSystemType() == 'linux'
     "Fast editing of .vimrc
-    nnoremap <silent> <Leader>ee :call Phwater_switchToBuf("~/.vimrc")<CR>
-    nnoremap <silent> <Leader>eb :call Phwater_switchToBuf("~/.vim/vimrcs/basic.vim")<CR>
-    nnoremap <silent> <Leader>ep :call Phwater_switchToBuf("~/.vim/vimrcs/plugin.vim")<CR>
+    nnoremap <silent> <Leader>ee :call _phwater_switchToBuf("~/.vimrc")<CR>
+    nnoremap <silent> <Leader>eb :call _phwater_switchToBuf("~/.vim/vimrcs/basic.vim")<CR>
+    nnoremap <silent> <Leader>ep :call _phwater_switchToBuf("~/.vim/vimrcs/plugin.vim")<CR>
     "Fast reloading of the .vimrc
     nnoremap <silent> <Leader>ss :source ~/.vimrc<CR><Bar>:AirlineRefresh<CR>
 endif
 
+"> see http://superuser.com/questions/553601/vim-has-unexpected-key-presses-on-start
+"           up-what-could-be-causing-this
+set t_RV=
+set ttymouse=xterm2
 
 "-------------------------------------------------------------------------------
 " Source main configurations
 "-------------------------------------------------------------------------------
-if Phwater_getSystemType() == 'windows'
+if _phwater_getSystemType() == 'windows'
     source $VIMRUNTIME/mswin.vim
     behave mswin
 endif
