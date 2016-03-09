@@ -96,7 +96,7 @@ function up() {
     path=$(echo ${path} | sed 's,//,/,g');
     cd "${path}";
     path=$(pwd 2>/dev/null);
-    echo "cd from $OLDPWD to $path"
+    #echo "cd from $OLDPWD to $path"
 }
 
 function mkcd () {
