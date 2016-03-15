@@ -91,7 +91,7 @@ NC="\e[m"            # Color Reset
 ALERT=${BD_RED}${BG_WHT}
 
 if [ "$color_prompt" = yes ]; then
-    PS1="[${debian_chroot:+($debian_chroot)}${FG_CYN}\u@\h$RS:${BD_BLE}\w${NC}]\$ "
+    PS1="[${debian_chroot:+($debian_chroot)}\[${FG_CYN}\]\u@\h$RS:\[${BD_BLE}\]\w\[${NC}\]]\$ "
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
