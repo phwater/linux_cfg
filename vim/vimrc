@@ -35,8 +35,14 @@ if _phwater_getSystemType() == 'linux'
     nnoremap <silent> <Leader>ss :source ~/.vimrc<CR><Bar>:AirlineRefresh<CR>
 endif
 
-"> see http://superuser.com/questions/553601/vim-has-unexpected-key-presses-on-start
-"           up-what-could-be-causing-this
+"-------------------------------------------------------------------------------
+" Terminal settings
+"-------------------------------------------------------------------------------
+set t_Co=256
+"set t_ti= t_te=
+
+"> see http://superuser.com/questions/553601/vim-has-unexpected-key-presses-on
+"          -startup-what-could-be-causing-this
 set t_RV=
 set ttymouse=xterm2
 

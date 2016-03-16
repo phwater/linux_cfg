@@ -130,6 +130,9 @@ set smartindent
 set cindent
 set cinoptions=g0,:0
 
+"> Delete comment character when joining commented lines
+set formatoptions+=j
+
 "-------------------------------------------------------------------------------
 " => Windows & Tab pages
 "-------------------------------------------------------------------------------
@@ -161,12 +164,6 @@ set mousehide
 "-------------------------------------------------------------------------------
 set encoding=utf-8
 "set fileencoding=utf-8
-
-"-------------------------------------------------------------------------------
-" => Terminal settings
-"-------------------------------------------------------------------------------
-set t_Co=256
-"set t_ti= t_te=
 
 "-------------------------------------------------------------------------------
 " => Ctags & cscope
@@ -229,6 +226,7 @@ nnoremap <silent> <C-A> ggvG$
 
 "> remove trailing spaces
 nnoremap <silent> <F5> :call _phwater_removeTrailWS()<CR>
+
 autocmd BufWrite *.py :call _phwater_removeTrailWS()
 autocmd BufWrite *.coffee :call _phwater_removeTrailWS()
 

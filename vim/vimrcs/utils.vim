@@ -44,13 +44,14 @@ endfunction
 
 function! _phwater_removeTrailWS()
     let _s = @/
-    exec "normal mz"
-    %s/\s\+$//ge
+    let l:save_cursor = getpos(".")
+    silent! execute ':%s/\s\+$//ge'
     let @/ = _s
     nohl
-    exec "normal `z"
+    call setpos('.', l:save_cursor)
 endfunction
 
 function! _phwater_findProjrc()
     " Todo
 endfunction
+
