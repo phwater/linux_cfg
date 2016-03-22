@@ -1,7 +1,15 @@
 # ~/.gitconfig
+#
+# Run
+#     git config --global user.email "you@example.com"
+#     git config --global user.name "your name"
+# to set your account's default identity.
+#
+# Omit --global to set the identity only in specific repository.
+
 [user]
     name = phwater
-    email = midsummereddy@gmail.com
+    email = "(none)"
 [color]
     ui = auto
 [core]
@@ -28,6 +36,6 @@
 [difftool]
     prompt = false
 [http]
-#   proxy = http://127.0.0.1:8087
+   ;proxy = http://127.0.0.1:8087
 [https]
-#   proxy = http://127.0.0.1:8087
+   ;proxy = http://127.0.0.1:8087

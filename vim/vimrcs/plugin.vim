@@ -172,10 +172,9 @@ let g:airline_theme='phwater'
 let g:ctrlp_map = '<C-P>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
-set wildignore+=*.~,*.so,*.swp,*.zip,*/out/*,*/tmp/*,*/test/*
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'file': '\v\.(exe|so|dll|o)$',
   \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
   \ }
 let g:ctrlp_user_command = {
@@ -183,7 +182,8 @@ let g:ctrlp_user_command = {
     \ 1: ['.git', 'cd %s && git ls-files'],
     \ 2: ['.hg', 'hg --cwd %s locate -I .'],
     \ },
-  \ 'fallback': 'find %s -type f'
+  \ 'fallback': 'find %s -type f',
+  \ 'ignore' : '1'
   \ }
 
 "-------------------------------------------------------------------------------
@@ -214,10 +214,10 @@ let g:ctrlp_user_command = {
 "-------------------------------------------------------------------------------
 
 "> Map '/' for search
-"noremap  / <Plug>(easymotion-sn)
+"nnoremap / <Plug>(easymotion-sn)
 "onoremap / <Plug>(easymotion-tn)
-"noremap  n <Plug>(easymotion-next)
-"noremap  N <Plug>(easymotion-prev)
+"nnoremap n <Plug>(easymotion-next)
+"nnoremap N <Plug>(easymotion-prev)
 
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1

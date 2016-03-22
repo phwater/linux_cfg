@@ -49,11 +49,11 @@ set viminfo='10,<500,:20,%,n~/.vim/viminfo
 set sessionoptions=blank,buffers,curdir,folds,help,options,tabpages,winsize
 
 "> ignore compiled files
-set wildignore=*.o,*~,*.pyc
+set wildignore=*.o,*.so,*~,*.pyc,*.zip
 if has("win16") || has("win32")
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+    set wildignore+=*\\.git\\*,*\\.hg\\*,*\\.svn\\*,*\\.DS_Store
 else
-    set wildignore+=.git\*,.hg\*,.svn\*
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 endif
 
 "-------------------------------------------------------------------------------
