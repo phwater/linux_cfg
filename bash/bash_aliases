@@ -13,6 +13,7 @@ if [ $UID -ne 0 ]; then
     alias poweroff='sudo /sbin/poweroff'
     alias halt='sudo /sbin/halt'
     alias shutdown='sudo /sbin/shutdown'
+    alias service='sudo /usr/sbin/service'
 fi
 
 # Add for android work
