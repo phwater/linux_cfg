@@ -1,41 +1,76 @@
-# ~/.gitconfig
+# Global git config file
+#
+# Put this in your ~/.gitconfig or ~/.config/git/config.
+# See https://git-scm.com/docs/git-config#FILES
 #
 # Run
-#     git config --global user.email "you@example.com"
 #     git config --global user.name "your name"
+#     git config --global user.email "you@example.com"
 # to set your account's default identity.
-#
-# Omit --global to set the identity only in specific repository.
 
 [user]
-    name = phwater
-    email = "(none)"
+	name = "(none)"
+	email = "(none)"
 [color]
-    ui = auto
+	ui = auto
 [core]
-    excludesfile = ~/.gitrc/git_ignore_global
+	excludesfile = ~/.gitrc/gitignore_global
+	editor = vim
+	pager = less -F -X
+	# Configure Git on OS X or Linux to properly handle line endings:
+	# $ git config --global core.autocrlf input
+	# Configure Git on Windows to properly handle line endings:
+	# $ git config --global core.autocrlf true
+	# See https://help.github.com/en/articles/configuring-git-to-handle-line-endings
+	autocrlf = input
 [commit]
-    template = ~/.gitrc/git_commit_template
+	template = ~/.gitrc/commit_template
 [push]
-    default = simple
+	default = simple
 [alias]
-    ck = checkout
-    cm = commit
-    st = status
-    br = branch
-    rb = rebase
-    sh = stash
-    pr = pull --rebase
-    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-    last = log -1 HEAD
-    visual = !gitk --max-count=100 --all
+	# List available aliases
+	aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
+	st = status
+	cm = commit
+	ck = checkout
+	br = branch
+	# 'restore' COMMAND IS EXPERIMENTAL. See https://git-scm.com/docs/git-restore
+	rs = reset HEAD --
+	;rs = restore --staged --
+	ss = stash
+	ssp = stash pop
+	pr = pull --rebase
+	untrack = rm --cache --
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	last = log -1 HEAD
+	# Require gitk
+	;visual = !gitk --max-count=100 --all
+[grep]
+	break = true
+	heading = true
+	lineNumber = true
+[log]
+	# Automatically --follow when given a single path
+	follow = true
+[tag]
+	# Sort tags as version numbers whenever applicable, so 1.10.2 is AFTER 1.2.0.
+	sort = version:refname
 [diff]
-    tool = vimdiff
-[merge]
-    tool = vimdiff
+	tool = vimdiff
+	# Use better, descriptive initials (c, i, w) instead of a/b.
+	mnemonicPrefix = true
+	# Show renames/moves as such
+	renames = true
 [difftool]
-    prompt = false
-[http]
-   ;proxy = http://127.0.0.1:8087
-[https]
-   ;proxy = http://127.0.0.1:8087
+	prompt = false
+[merge]
+	tool = vimdiff
+[mergetool]
+	# Clean up backup files created by merge tools on tool exit
+	keepBackup = false
+	# Clean up temp files created by merge tools on tool exit
+	keepTemporaries = false
+	# Put the temp files in a dedicated dir anyway
+	writeToTemp = true
+	# Auto-accept file prompts when launching merge tools
+	prompt = false
