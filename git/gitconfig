@@ -35,8 +35,8 @@
 	ck = checkout
 	br = branch
 	# 'restore' COMMAND IS EXPERIMENTAL. See https://git-scm.com/docs/git-restore
-	rs = reset HEAD --
-	;rs = restore --staged --
+	rs = reset HEAD
+	;rs = restore --staged
 	ss = stash
 	ssp = stash pop
 	pr = pull --rebase
