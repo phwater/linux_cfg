@@ -21,7 +21,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 "> Plugins
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
@@ -149,7 +150,7 @@ let g:airline_detect_iminsert=0
 let g:airline_inactive_collapse=1
 "> themes are automatically selected based on the matching
 "> colorscheme. this can be overridden by defining a value.
-let g:airline_theme='phwater'
+"let g:airline_theme='phwater'
 
 "-------------------------------------------------------------------------------
 " 5. CtrlP - file finder
@@ -271,5 +272,4 @@ nnoremap <silent> <Leader>bv :BufExplorerVerticalSplit<CR>
 "-------------------------------------------------------------------------------
 let g:indentLine_color_tty_light=5    " (default: 4)
 let g:indentLine_color_dark=6         " (default: 2)
-
 

@@ -1,19 +1,22 @@
-#! /bin/bash
+#!/bin/bash
 
-echo "copy vimrcs..."
-cp vimrc ~/.vimrc
-if [ ! -d ~/.vim/ ]; then
+DIR="${0%/*}"
+
+echo -e "Copy vimrcs..."
+cp ${DIR}/vimrc ~/.vimrc
+if [ ! -d ~/.vim/vimrcs ]; then
     mkdir -p ~/.vim/vimrcs/
 fi
-cp -a vimrcs/. ~/.vim/vimrcs
+cp -a ${DIR}/vimrcs/. ~/.vim/vimrcs
 set runtimepath+=~/.vim
-echo "done."
+echo -e "Done.\n"
 
 if [ ! -d ~/.vim/bundle/ ]; then
-    echo "install Vundle(using git)..."
+    echo -e "install Vundle(using git)..."
     mkdir -p ~/.vim/bundle && cd ~/.vim/bundle/
     git clone https://github.com/VundleVim/Vundle.vim.git
-    echo "done. Please use :PluginInstall cmd first launch Vim"
+    echo -e "In Vim, use \':PluginInstall\' to install Vim plugins."
+    echo -e "Done.\n"
 fi
 
-echo "Installed successfully! Enjoy :-)"
+echo -e "Installed successfully! Enjoy :-)"
