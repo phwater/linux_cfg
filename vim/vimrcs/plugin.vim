@@ -150,7 +150,7 @@ let g:airline_detect_iminsert=0
 let g:airline_inactive_collapse=1
 "> themes are automatically selected based on the matching
 "> colorscheme. this can be overridden by defining a value.
-"let g:airline_theme='phwater'
+let g:airline_theme='luna'
 
 "-------------------------------------------------------------------------------
 " 5. CtrlP - file finder
