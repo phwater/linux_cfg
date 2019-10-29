@@ -16,6 +16,9 @@ if (0 != &compatible)
     set nocompatible
 endif
 
+"> Use bash
+set shell=/bin/bash
+
 "> Set mapleader
 let mapleader=","
 
