@@ -44,7 +44,7 @@
 	ss = stash
 	ssp = stash pop
 	pr = pull --rebase
-	untrack = rm --cache --
+	untrack = rm --cache
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 	last = log -1 HEAD
 	# Require gitk
