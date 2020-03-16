@@ -33,11 +33,13 @@ if [ ! -d ${DIR}/backup ]; then
 fi
 cp ~/.bashrc ${DIR}/backup/bashrc 2>/dev/null
 cp ~/.bash_aliases ${DIR}/backup/bash_aliases 2>/dev/null
+cp ~/.inputrc ${DIR}/backup/inputrc 2>/dev/null
 echo -e "Done.\n"
 
-echo -e "copy bash configures..."
+echo -e "Copy bash configures..."
 cp ${DIR}/bashrc ~/.bashrc
 cp ${DIR}/bash_aliases ~/.bash_aliases
+cp ${DIR}/inputrc ~/.inputrc
 echo -e "Done.\n"
 
 echo -e "To make the change takes place immediately, please run: source ~/.bashrc\n"

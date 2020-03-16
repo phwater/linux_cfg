@@ -26,23 +26,22 @@ fi
 
 echo -e "Backup old files..."
 if [[ ! -d ${DIR}/backup ]]; then
-    echo -e "  mkdir backup."
+    echo -e " mkdir backup."
     mkdir -p ${DIR}/backup
 fi
 cp ~/.gitconfig ${DIR}/backup/gitconfig 2>/dev/null
-if [[ -d ~/.gitrc ]]; then
-    echo -e "  copy ~/.gitrc to backup folder."
-    cp -r ~/.gitrc/ ${DIR}/backup/gitrc/
+if [[ -d ~/.config/git ]]; then
+    echo -e "  copy ~/.config/git/ to backup folder."
+    cp -r ~/.config/git/ ${DIR}/backup/gitrc/
 fi
 echo -e "Done.\n"
 
 echo -e "Copy git configures..."
 cp ${DIR}/gitconfig ~/.gitconfig
-if [[ ! -d ~/.gitrc ]]; then
-    mkdir -p ~/.gitrc/
+if [[ ! -d ~/.config/git ]]; then
+    mkdir -p ~/.config/git
 fi
-rm ~/.gitrc/*
-cp -a ${DIR}/gitrc/. ~/.gitrc
+cp -a ${DIR}/gitrc/. ~/.config/git
 echo -e "Done.\n"
 
 if [[ -n "${GIT_USER_NAME}" ]]; then

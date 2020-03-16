@@ -14,6 +14,7 @@ HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
+PROMPT_COMMAND='history -a' # save history when show prompt
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
@@ -91,10 +92,15 @@ NC='\[\e[m\]'            # Color Reset
 
 # Bold White on red background
 ALERT=${BD_RED}${BG_WHT}
+
 #### Color Setup ####
 
+_parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
 if [ "$color_prompt" = yes ]; then
-    PS1="[${debian_chroot:+($debian_chroot)}${BD_GRN}\u@\h${NC}:${BD_BLE}\w${NC}]\$ "
+    PS1="[${debian_chroot:+($debian_chroot)}${BD_GRN}\u@\h${NC}:${BD_BLE}\w${BD_CYN}\$(_parse_git_branch)${NC}]\$ "
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -112,7 +118,7 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    alias ls='ls --color=auto --time-style=long-iso'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
@@ -147,3 +153,4 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+

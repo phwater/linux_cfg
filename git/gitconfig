@@ -7,6 +7,10 @@
 #     git config --global user.name "your name"
 #     git config --global user.email "you@example.com"
 # to set your account's default identity.
+# Run
+#     git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
+#     git config --global --unset http.https://github.com.proxy
+# to set/unset proxy for github.com.
 
 [user]
 	name = "(none)"
@@ -14,7 +18,7 @@
 [color]
 	ui = auto
 [core]
-	excludesfile = ~/.gitrc/gitignore_global
+	excludesfile = ~/.config/git/gitignore_global
 	editor = vim
 	pager = less -F -X
 	# Configure Git on OS X or Linux to properly handle line endings:
@@ -24,7 +28,7 @@
 	# See https://help.github.com/en/articles/configuring-git-to-handle-line-endings
 	autocrlf = input
 [commit]
-	template = ~/.gitrc/commit_template
+	template = ~/.config/git/commit_template
 [push]
 	default = simple
 [alias]
@@ -74,3 +78,5 @@
 	writeToTemp = true
 	# Auto-accept file prompts when launching merge tools
 	prompt = false
+[gui]
+	encoding = utf-8
