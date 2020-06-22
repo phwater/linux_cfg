@@ -3,6 +3,7 @@
 # if user is not root, pass all commands via sudo #
 if [ $UID -ne 0 ]; then
     alias apt-get='sudo apt-get'
+    alias apt='apt'
     alias add-apt-repository='sudo add-apt-repository'
     alias update-alternatives='sudo update-alternatives'
 
@@ -62,6 +63,10 @@ alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 #alias chown='chown --preserve-root'
 #alias chmod='chmod --preserve-root'
 #alias chgrp='chgrp --preserve-root'
+
+# Docker #
+alias dopsa='docker ps -a --format "table {{.ID}}  {{.Names}}\t{{.Networks}}    {{.Ports}}\t{{.Status}}\t{{ .Image }}"'
+alias doimg='docker images'
 
 #-------------------------------------------------------------
 # Misc utilities:
